@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-backend-app-deployment
+  labels:
+    app: simple-backend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-backend-app
+  template:
+    metadata:
+      labels:
+        app: simple-backend-app
+    spec:
+      containers:
+        - name: simple-backend-app-container
+          image: zhongbozhu/simple-backend-app:latest
+          ports:
+            - containerPort: 8228
+
+        - name: mongodb-container
+          image: mongo:latest
+          ports:
+            - containerPort: 27017

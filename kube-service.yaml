@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-backend-app-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8228        # Expose the service on internal port 8228
+      targetPort: 8228  # Forward the request to the container port 8228, which listened by the app container
+      nodePort: 30007   # Expose the service on external port 30007
+      protocol: TCP
+  selector:
+    app: simple-backend-app
